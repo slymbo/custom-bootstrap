@@ -1,0 +1,31 @@
+{
+    "name": "slymbo-sass",
+    "description": "Slymbo",
+    "license": "MIT",
+    "repository": {},
+    "scripts": {
+        "build": "npm-run-all clean -p css -p clean-css",
+        "clean": "rimraf dist",
+        "css": "npm-run-all css:compile css:prefix",
+        "css:compile": "node-sass --output-style expanded --precision 6 --indent-width 4 --importer node_modules/node-sass-magic-importer/dist/cli.js sass/src/style.scss -o dist/ --source-map true",
+        "css:prefix": "postcss --replace \"dist/**/*.css\"",
+        "dev": "npm-run-all clean -p 'dev:*'",
+        "dev:css": "nodemon -w postcss.config.js -x \"nodemon -w src/ -e scss -x \\\"npm-run-all css\\\"\"",
+        "clean-css": "cleancss -o dist/style.min.css dist/style.css --source-map"
+    },
+    "devDependencies": {
+        "@popperjs/core": "*",
+        "autoprefixer": "*",
+        "bootstrap": "*",
+        "node-sass": "*",
+        "node-sass-magic-importer": "*",
+        "nodemon": "*",
+        "npm-run-all": "*",
+        "postcss": "^*",
+        "postcss-cli": "*",
+        "postcss-merge-rules": "*",
+        "rimraf": "*",
+        "clean-css": "*",
+        "clean-css-cli": "*"
+    }
+}
